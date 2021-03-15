@@ -1,6 +1,6 @@
 variable compartment_ocid { default = "ocid1.compartment.oc1..aaaaaaaab3yw6vwv6zafelbx6zvhuszn5iaoesrwxkh6d645arl266w4aofq" }
 variable primary_region { default = "us-sanjose-1" }
-# variable region { default = "eu-frankfurt-1" }
+variable region { default = "eu-frankfurt-1" }
 
 variable api_fingerprint { default = "3f:c2:66:ad:6b:95:9e:d4:2a:3b:a6:97:89:6d:bb:6e" }
 variable api_private_key_path { default =  "/home/opc/.terraform.d/api_key.pem" }
