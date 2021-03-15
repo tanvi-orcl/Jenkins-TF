@@ -23,7 +23,7 @@ resource oci_core_subnet standbysubnet1 {
   route_table_id             = oci_core_vcn.standbydr1.default_route_table_id
   security_list_ids = [
     oci_core_vcn.standbydr1.default_security_list_id,
-    oci_core_security_list.DB-Security-List.id,
+    # oci_core_security_list.DB-Security-List.id,
   ]
   vcn_id = oci_core_vcn.standbydr1.id
 }
