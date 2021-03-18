@@ -4,7 +4,7 @@ provider oci {
   	user_ocid            = var.user_id
   	fingerprint          = var.api_fingerprint
   	#private_key_path     = var.api_private_key_path
-	private_key_path     = env.TF_API_KEY
+	private_key_path     = var.TF_API_KEY
 }
 
 # provider oci { 
