@@ -7,6 +7,6 @@ variable api_private_key_path { default =  "/var/lib/jenkins/workspace/api_key.p
 variable tenancy_id { default =  "ocid1.tenancy.oc1..aaaaaaaaplkmid2untpzjcxrmbv4nowe74yb4lr6idtckwo4wyf7jh23be4q" }
 variable user_id { default =  "ocid1.user.oc1..aaaaaaaa5in22b5bvkncp373g2mkhi6vh2cspj4vt2j5sx27576pql75umda" }
 
-variable terraform_api_path {}
+variable TF_VAR_api_key {}
 # variable export_terraform_test_source_image_id { default = "ocid1.image.oc1.us-sanjose-1.aaaaaaaag2fam5xawz7t3ad5u3mzxdhglxeldohlijdsjfaielqluysrc3ga" }
 
