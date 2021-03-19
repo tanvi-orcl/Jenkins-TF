@@ -50,6 +50,13 @@
             
     ![img](./images/jenkins_status.png)
 
+    
+    For the purposes of this walk-through, we're running our project from our master node when we test it. For that reason, we need git and terraform on the master node as well (the project in the final section). 
+
+    ```
+    sudo yum -y install git terraform
+    ```
+
 
 3. Access Jenkins: On your web browser, access Jenkins at **http://<jenkins_master_node_public_IP>:8080**. You will see the "Unlock Jenkins" screen which requires the initial admin password. Run `sudo cat /var/lib/jenkins/secrets/initialAdminPassword` in your instance to view the password and then copy and paste into the Administrator password field.
 
@@ -110,3 +117,37 @@ This sample project shows how to use Jenkins with a basic Terraform project and 
 1. Connect Github to Terraform: From your github repository, go to **Settings**, **Webhooks**, then select **Add Webhook**. Under Payload URL, enter in `<your-jenkins-url>/github-webhook/`
 
     ![img](./images/github_webhook.png)
+
+2. Bind API Key to Secret File: Click on Manage Jenkins and then Manage Credentials. Under the **Store** column select **Jenkins**. Select **Global credentials (unrestricted)**. Click **Add Credential** from the left-hand side panel.  Select the "Kind" of credential to be "Secret File" then upload the API key you use to authenticate with your terraform provider.
+
+3. Create Pipeline: From the main Dashboard, select **New Item** from the left-hand panel and then select **Pipeline** as the type of project.
+
+    Under "Build" check "Github". That will trigger the build to run everytime a push to the repo. Finally, under pipeline enter the following script. Be sure to enter in the correct credentials id string for the terraform api key and the github login.
+
+    ```
+    pipeline {
+        agent any
+        environment {
+            TF_VAR_api_private_key_path = credentials('terraform_key_id')
+        }
+        stages {
+            stage('Terraform Init') {
+                steps {
+                    git credentialsId: 'github_cred_id', url: 'https://github.com/tanvi-orcl/Jenkins-TF.git'
+                    sh "terraform init"
+                }
+            }
+            
+            stage('Terrraform Plan') {
+                steps {
+                    sh "terraform plan"
+                }
+            }
+        }
+    }
+    ```
+
+4. Trigger Build: Trigger from the side. See if integration is working - change code and push. Should trigger a build. If the node next to it is blue, the pipeline ran successfully. 
+
+
+5. Using Agent nodes: If you would like to practice using an agent node, spin one up. It should have the label you entered earlier. Change the project to utilize the labeled nodes and then build. If you look at the console log, you'll see it's using the agent instead of the master node. 
