@@ -8,9 +8,6 @@ variable tenancy_id { default =  "ocid1.tenancy.oc1..aaaaaaaaplkmid2untpzjcxrmbv
 variable user_id { default =  "ocid1.user.oc1..aaaaaaaa5in22b5bvkncp373g2mkhi6vh2cspj4vt2j5sx27576pql75umda" }
 variable api_private_key_path {} # to be passed in by jenkins
 
-# Backend
-variable address { default = "https://objectstorage.us-sanjose-1.oraclecloud.com/p/iQgGsDD1dbxFcI1b60A_LsKS86-eJbaCV1HW0Ed-kNaKQef5iamYwVOzUs6sjw5n/n/orasenatdoracledigital01/b/terraform-backend/o/terraform.tfstate"}
-    
 # CIDR Blocks
 variable vcn_cidr { default = "10.1.0.0/16" }
 variable subnet_cidr { default = "10.1.0.0/24" }
