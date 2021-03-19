@@ -13,7 +13,7 @@ resource oci_core_internet_gateway jenkinsInternetGW {
 }
 
 resource oci_core_subnet jenkinsSubnetA {
-  cidr_block     = "10.1.0.0/24"
+  cidr_block     = var.subnet_cidr
   compartment_id = var.compartment_ocid
   dhcp_options_id = oci_core_vcn.jenkinsVCN.default_dhcp_options_id
   display_name    = "jenkinsSubnetA"
@@ -30,7 +30,7 @@ resource oci_core_subnet jenkinsSubnetA {
 
 resource oci_core_vcn jenkinsVCN {
   cidr_blocks = [
-    "10.1.0.0/16",
+    var.vcn_cidr,
   ]
   compartment_id = var.compartment_ocid
   display_name = "jenkinsVCN"
