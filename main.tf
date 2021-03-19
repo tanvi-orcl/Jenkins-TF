@@ -1,10 +1,5 @@
 # Basic Networking Configuration
 
-data oci_identity_availability_domain rLid-SANJOSE-1-AD-1 {
-  compartment_id = var.compartment_ocid
-  ad_number      = "1"
-}
-
 resource oci_core_internet_gateway jenkinsInternetGW {
   compartment_id = var.compartment_ocid
   display_name = "jenkinsInternetGW"
